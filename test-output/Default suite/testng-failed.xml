@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <parameter name="negPassword" value="param-val-not-found"/>
+  <parameter name="posUserName" value="param-val-not-found"/>
+  <parameter name="probUserName" value="param-val-not-found"/>
+  <parameter name="posPassword" value="param-val-not-found"/>
+  <parameter name="negUserName" value="param-val-not-found"/>
+  <parameter name="perfPassword" value="param-val-not-found"/>
+  <parameter name="probPassword" value="param-val-not-found"/>
+  <parameter name="perfUserName" value="param-val-not-found"/>
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="com.saucedemo.TestLoginPositive">
+        <methods>
+          <include name="performanceUserTest" invocation-numbers="0"/>
+          <include name="postiveLoginTest" invocation-numbers="0"/>
+          <include name="problemUserTest" invocation-numbers="0"/>
+          <include name="addOneProductToCart" invocation-numbers="0"/>
+          <include name="lockedOutUserTest" invocation-numbers="0"/>
+          <include name="launchDriver"/>
+          <include name="shutDownDriver"/>
+        </methods>
+      </class> <!-- com.saucedemo.TestLoginPositive -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

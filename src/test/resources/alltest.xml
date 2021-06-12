@@ -1,0 +1,55 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="All Test">
+
+	<test name="Positive User">
+		<parameter name="posUserName" value="standard_user"></parameter>
+		<parameter name="posPassword" value="secret_sauce"></parameter>
+		<classes>
+			<class name="com.saucedemo.TestLoginPositive">
+				<methods>
+					<include name="postiveLoginTest"></include>
+					<include name="addOneProductToCart"></include>
+					<include name="addMultipleProducts"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+	<test name="Locked User">
+		<parameter name="negUserName" value="locked_out_user"></parameter>
+		<parameter name="negPassword" value="secret_sauce"></parameter>
+		<classes>
+			<class name="com.saucedemo.TestLoginPositive" >
+			<methods>
+					<include name="lockedOutUserTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
+	<test name="Prob User">
+		<parameter name="probUserName" value="problem_user"></parameter>
+		<parameter name="probPassword" value="secret_sauce"></parameter>
+		<classes>
+			<class name="com.saucedemo.TestLoginPositive" >
+			<methods>
+					<include name="problemUserTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+	<test name="Perf User">
+		<parameter name="perfUserName" value="performance_glitch_user"></parameter>
+		<parameter name="perfPassword" value="secret_sauce"></parameter>
+		<classes>
+			<class name="com.saucedemo.TestLoginPositive" >
+			<methods>
+					<include name="performanceUserTest"></include>
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+</suite>

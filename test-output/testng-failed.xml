@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [All Test]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Positive User(failed)">
+    <parameter name="posUserName" value="standard_user"/>
+    <parameter name="posPassword" value="secret_sauce"/>
+    <classes>
+      <class name="com.saucedemo.TestLoginPositive">
+        <methods>
+          <include name="addMultipleProducts" invocation-numbers="0"/>
+          <include name="launchDriver"/>
+          <include name="shutDownDriver"/>
+        </methods>
+      </class> <!-- com.saucedemo.TestLoginPositive -->
+    </classes>
+  </test> <!-- Positive User(failed) -->
+</suite> <!-- Failed suite [All Test] -->
