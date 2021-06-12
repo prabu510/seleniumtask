@@ -20,16 +20,13 @@ import org.testng.annotations.Test;
 public class TestLoginPositive {
 
 	WebDriver driver;
-	public TestLoginPositive() {
-		super();
-	}
+	
 	@BeforeMethod
 	public void launchDriver() {
 		BrowserDriverFactory factory = new BrowserDriverFactory();
 		 this.driver = factory.browserFactory();
 	}
 
-	//@Test(dataProvider = "loginDataProvider",priority = 1)
 	@Parameters({"posUserName","posPassword"})
 	@Test
 	public void postiveLoginTest(String userName, String password) throws Exception {
