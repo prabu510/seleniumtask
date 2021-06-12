@@ -10,7 +10,7 @@ public class BrowserDriverFactory {
 		
 	}
 	public WebDriver browserFactory() {
-		System.setProperty("webdriver.chrome.driver", "/Users/aravind-3905/Documents/eclipse21/test-automation/src/main/resources/chromedriver");
+		System.setProperty("webdriver.chrome.driver", "/Users/prabu/Documents/eclipse21/test-automation/src/main/resources/chromedriver");
 		WebDriver driver = new ChromeDriver();
 		String url = "https://www.saucedemo.com/";
 		driver.get(url);
