@@ -16,17 +16,20 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+//Adding listeners to capture test results
 @Listeners(TestListener.class)
 public class TestLoginPositive {
 
 	WebDriver driver;
 	
+	//launching the driver
 	@BeforeMethod
 	public void launchDriver() {
 		BrowserDriverFactory factory = new BrowserDriverFactory();
 		 this.driver = factory.browserFactory();
 	}
-
+        
+	//checking login of positive user
 	@Parameters({"posUserName","posPassword"})
 	@Test
 	public void postiveLoginTest(String userName, String password) throws Exception {
@@ -36,6 +39,7 @@ public class TestLoginPositive {
 		Assert.assertEquals(actualURL, expectedURL, "Login Failed");	
 	}
 	
+	//checking login of locked out user
 	@Parameters({"negUserName","negPassword"})
 	@Test
 	
@@ -46,6 +50,7 @@ public class TestLoginPositive {
 		Assert.assertTrue(errorMessage.contains("Epic sadface: Sorry, this user has been locked out."),"Not a locked out user");	
 	}
 	
+	//Login method for getting uername and password and to click login button
 	public void login(String userName,String password) throws Exception{
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		WebElement userNameelement = this.driver.findElement(By.id("user-name"));
@@ -57,6 +62,7 @@ public class TestLoginPositive {
 		buttonElement.click();
 	}
 	
+	//checking login for problem user
 	@Parameters({"probUserName","probPassword"})
 	@Test
 	public void problemUserTest(String userName,String password) throws Exception{
@@ -71,6 +77,7 @@ public class TestLoginPositive {
 		Assert.assertNotEquals(outerImage, innerImage,"Not a problem user");
 	}
 	
+	//checking login for performance isue user
 	@Parameters({"perfUserName","perfPassword"})
 	@Test
 	public void performanceUserTest(String userName,String password) throws Exception{
@@ -80,6 +87,7 @@ public class TestLoginPositive {
 		Assert.assertTrue(afterTime-time>=3000,"Not a Performance user");
 	}
 	
+	//Adding one product to cart and checkout. Verifying product with name and verifying product price
 	@Parameters({"posUserName","posPassword"})
 	@Test
 	public void addOneProductToCart(String userName,String password) throws Exception{
@@ -119,17 +127,14 @@ public class TestLoginPositive {
 		this.driver.findElement(By.id("finish")).click();
 		
 		
-		String message = this.driver.findElement(By.xpath("//div[@id='checkout_complete_container']/h2[@class='complete-header']")).getText();
-	
-		Assert.assertTrue(message.contains("THANK YOU FOR YOUR ORDER"),"Checkout is not working");
-		
+		String message = this.driver.findElement(By.xpath("//div[@id='checkout_complete_container']/h2[@class='complete-header']")).getText();	
+		Assert.assertTrue(message.contains("THANK YOU FOR YOUR ORDER"),"Checkout is not working");		
 		Thread.sleep(2000);
 	}
 	
-	
+	//Adding multiple product to cart and checkout. Verifying products with name and verifying products total price
 	@Parameters({"posUserName","posPassword"})
-	@Test
-	
+	@Test	
 	public void addMultipleProducts(String userName,String password) throws Exception{
 		login(userName,password);
 		String productName1 = this.driver.findElement(By.xpath("//a[@id='item_4_title_link']/div[@class='inventory_item_name']")).getText();
@@ -172,19 +177,15 @@ public class TestLoginPositive {
 		System.out.println(totalPrice);
 		Double total = Double.parseDouble(product1Price.replace("$", ""))+Double.parseDouble(product2Price.replace("$", ""));
 		System.out.println("Total:: "+total);
-		Assert.assertEquals(totalPrice,"$"+total, "Price mismatch in checkout View");
+		Assert.assertEquals(totalPrice,"$"+total, "Price mismatch in checkout View");		
+		this.driver.findElement(By.id("finish")).click();		
 		
-		this.driver.findElement(By.id("finish")).click();
-		
-		
-		String message = this.driver.findElement(By.xpath("//div[@id='checkout_complete_container']/h2[@class='complete-header']")).getText();
-	
-		Assert.assertTrue(message.contains("THANK YOU FOR YOUR ORDER"),"Checkout is not working");
-		
+		String message = this.driver.findElement(By.xpath("//div[@id='checkout_complete_container']/h2[@class='complete-header']")).getText();	
+		Assert.assertTrue(message.contains("THANK YOU FOR YOUR ORDER"),"Checkout is not working");		
 		Thread.sleep(2000);	
 	}
 
-	
+	//quitting the driver 
 	@AfterMethod
 	public void shutDownDriver() {
 		this.driver.quit();
